@@ -1,0 +1,36 @@
+<h2>Here are some delicious foods!</h2>
+<div>
+    @{
+        string[] foods = {
+            "Apple Pie",
+            "Pizza",
+            "Cinnamon Rolls",
+            "Lasagna",
+            "Donuts",
+            "Chocolate Cake",
+            "Burritos"
+        };
+        @* for (int i = 0; i < foods.Length; i++)
+        {
+            if(foods[i][0].Equals('C')) 
+            {
+            <p><span style="color:red">@foods[i]</span></p>;
+            
+            } else 
+            {
+            <p>@foods[i]</p>;
+            } 
+        } *@
+        foreach(string food in foods)
+        {
+            if(food[0].Equals('C'))
+            {
+            <p><span style="color:red">@food</span></p>;
+            
+            } else 
+            {
+            <p>@food</p>;
+            } 
+        }
+    }
+</div>
