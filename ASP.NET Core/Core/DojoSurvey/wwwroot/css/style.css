@@ -1,0 +1,15 @@
+.error {
+    color: red;
+}
+td {
+    padding: 5px 50px 5px 0;
+}
+button {
+    float: right;
+}
+input[type="submit"] {
+    float: right;
+}
+body {
+    padding: 100px 300px 0 300px;
+}
