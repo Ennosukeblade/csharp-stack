@@ -1,0 +1,13 @@
+﻿@{
+    ViewData["Title"] = "Here are some numbers!";
+}
+@model int[]
+<h1 class="display-6 text-center mb-5">@ViewData["Title"]</h1>
+<div class="p-3 border border-dark border-2 w-25">
+@foreach (int num in Model)
+{
+    <p>@num</p>
+}
+</div>
+
+
