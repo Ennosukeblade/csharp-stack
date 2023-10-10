@@ -1,0 +1,42 @@
+@model List<Wedding>
+
+<h3>Welcome @ViewBag.CurrentUser.FirstName!</h3>
+<table class="table table-striped border border-2">
+  <thead>
+    <tr>
+      <th scope="col">Wedding of</th>
+      <th scope="col">Date</th>
+      <th scope="col">Guest Count</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach (Wedding w in Model)
+    {
+    <tr>
+      <td>
+        <a asp-controller="Home" asp-action="OneWedding" asp-route-WeddingId=@w.WeddingId class="">
+          @w.WedderOne & @w.WedderTwo
+        </a>
+          
+      </td>
+      <td>@w.Date</td>
+      <td>@w.Guests.Count</td>
+      <td>
+        @if(w.UserId == Context.Session.GetInt32("userId"))
+        {
+          <a asp-controller="Home" asp-action="DeleteWedding" asp-route-WeddingId=@w.WeddingId class="text-danger">Delete</a>
+        } else {
+          <form asp-action="BeGuest" asp-controller="Home" method="post">
+            <input type="hidden" name="WeddingId" value="@w.WeddingId">
+            <input type="hidden" name="UserId" value='@Context.Session.GetInt32("userId")'>
+            <input type="submit" value="RSVP" class="btn btn-primary">
+          </form>
+        }
+      </td>
+    </tr>
+    }
+
+  </tbody>
+</table>
+

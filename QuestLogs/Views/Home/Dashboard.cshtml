@@ -1,0 +1,68 @@
+<div class="row">
+    <div class="col-6">
+<h2>
+Your Posted Quests</h2>
+@if(ViewBag.PostedQuests.Count != 0){
+    foreach (var q in ViewBag.PostedQuests)
+{
+    <div class="card p-3 mb-2">
+        <div class="d-flex justify-content-between">
+            <h4 class="mb-0">@q.Title</h4>
+            <div class="badge text-dark">@q.Reward gold</div>
+        </div>
+        <p>@q.Description</p>
+        <div class="d-flex justify-content-between mt-2">
+            <div>        
+
+                <div class="mt-2">People on Quest:</div>
+            </div>
+            @* <form asp-action="TakeQuest" asp-controller="Home" method="post">
+            <input type="hidden" name="QuestId" value="@q.QuestId">
+            <input type="hidden" name="UserId" value='@Context.Session.GetInt32("userId")'>
+            <input type="submit" value="Join" class="btn btn-primary">
+        </form> *@
+
+
+        </div>
+    </div>
+}
+}
+
+
+    </div>
+    <div class="col-6">
+<h2>Your Taken Quests</h2>
+@if(ViewBag.TakenQuests.Count!=0){
+foreach (var t in ViewBag.TakenQuests)
+{
+    <div class="card p-3 mb-2">
+        <div class="d-flex justify-content-between">
+            <h4 class="mb-0">@t.Quest.Title</h4>
+            <div class="badge text-dark">@t.Quest.Reward gold</div>
+        </div>
+        <p>@t.Quest.Description</p>
+        <div class="d-flex justify-content-between mt-2">  
+                <div class="mt-2">People on Quest:</div>
+@*         <form asp-action="LeaveQuest" asp-controller="Home" method="post">
+            <input type="hidden" name="UserQuestId" value="@t.UserQuestId">
+            <input type="submit" value="Leave" class="btn btn-primary">
+        </form> 
+        <a asp-action="LeaveQuest" asp-route="/quests/@t.UserQuestId/leave" class="btn btn-primary">Leave</a> *@
+        @if(!t.completed){
+<div class="d-flex flex-column gap-1">
+        <a asp-controller="Home" asp-action="UpdateQuestToComplete" asp-route-UserQuestId=@t.UserQuestId class="btn btn-primary">Complete</a>
+        <a asp-controller="Home" asp-action="LeaveQuest" asp-route-UserQuestId=@t.UserQuestId class="btn btn-primary">Delete</a>
+</div>
+        } else {
+            <p>Quest Complete</p>
+            }
+        
+
+        </div>
+    </div>
+}
+}
+
+    </div>
+</div>
+

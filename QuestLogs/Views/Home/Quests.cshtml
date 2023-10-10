@@ -1,0 +1,26 @@
+@model List<Quest>
+
+<h2>Available Quests</h2>
+@foreach (Quest q in Model)
+{
+<div class="card p-3 mb-2">
+    <div class="d-flex justify-content-between">
+        <h4 class="mb-0">@q.Title</h4>
+        <div class="badge text-dark">@q.Reward gold</div>
+    </div>
+    <p>@q.Description</p>
+    <div class="d-flex justify-content-between mt-2">
+        <div>        
+            
+            <div class="mt-2">People on Quest: @q.joindUsers.Count</div>
+        </div>
+        <form asp-action="TakeQuest" asp-controller="Home" method="post">
+            <input type="hidden" name="QuestId" value="@q.QuestId">
+            <input type="hidden" name="UserId" value='@Context.Session.GetInt32("userId")'>
+            <input type="submit" value="Join" class="btn btn-primary">
+        </form>
+        
+
+    </div>
+</div>
+}
